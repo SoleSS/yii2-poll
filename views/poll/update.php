@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model soless\poll\models\PsPoll */
 
-$this->title = 'Update Ps Poll: ' . $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Ps Polls', 'url' => ['index']];
+$this->title = 'Изменить: ' . $model->title;
+$this->params['breadcrumbs'][] = ['label' => 'Голосования', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Правка';
 ?>
 <div class="ps-poll-update">
 

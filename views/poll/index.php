@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel soless\poll\models\PsPollSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Ps Polls';
+$this->title = 'Голосования';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="ps-poll-index">
@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Ps Poll', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -28,9 +28,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'title',
-            'description:ntext',
-            'amp_description:ntext',
-            'params',
+            //'description:ntext',
+            //'amp_description:ntext',
+            //'params',
             //'created_at',
             //'updated_at',
 

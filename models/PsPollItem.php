@@ -18,6 +18,16 @@ namespace soless\poll\models;
  */
 class PsPollItem extends base\PsPollItem
 {
+    public function beforeValidate()
+    {
+        if ($this->isNewRecord) {
+            $this->created_at = date('Y-m-d H:i:s');
+        }
+        $this->updated_at = date('Y-m-d H:i:s');
+
+        return parent::beforeValidate();
+    }
+
     /**
      * Gets query for [[PsPoll]].
      *

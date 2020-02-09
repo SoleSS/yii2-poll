@@ -4,7 +4,7 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `cms_category`.
  */
-class m200209_094500_init extends Migration
+class m200209_121200_additional_fields extends Migration
 {
     /**
      * {@inheritdoc}
@@ -21,7 +21,7 @@ class m200209_094500_init extends Migration
         $this->addColumn('ps_poll', 'poll_up', $this->datetime()->comment('Дата начала опроса'));
         $this->addColumn('ps_poll', 'poll_down', $this->datetime()->comment('Дата окончания опроса'));
 
-        $this->createIndex('idx-ps_poll-status', 'ps_poll', 'type');
+        $this->createIndex('idx-ps_poll-type', 'ps_poll', 'type');
         $this->createIndex('idx-ps_poll-status', 'ps_poll', 'status');
         $this->createIndex('idx-ps_poll-poll_up', 'ps_poll', 'poll_up');
         $this->createIndex('idx-ps_poll-poll_down', 'ps_poll', 'poll_down');

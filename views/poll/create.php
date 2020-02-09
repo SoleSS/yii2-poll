@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model soless\poll\models\PsPoll */
 
-$this->title = 'Create Ps Poll';
-$this->params['breadcrumbs'][] = ['label' => 'Ps Polls', 'url' => ['index']];
+$this->title = 'Добавить голосование';
+$this->params['breadcrumbs'][] = ['label' => 'Голосования', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="ps-poll-create">
