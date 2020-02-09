@@ -59,8 +59,17 @@ use \kartik\datetime\DateTimePicker;
                 'title' => 'Заголовок',
             ],
             [
-                'name' => 'description',
+                'name'  => 'description',
+                'type'  => CKEditor::className(),
                 'title' => 'Описание',
+                'options' => [
+                    'editorOptions' => ElFinder::ckeditorOptions('elfinder', [
+                        'preset' => 'standard',
+                        'inline' => false,
+                        'height' => '100px',
+                        'allowedContent' => true,
+                    ])
+                ]
             ]
         ]
     ]);
@@ -76,6 +85,6 @@ use \kartik\datetime\DateTimePicker;
 
 <style>
     .list-cell__id {
-        width: 150px;
+        width: 100px;
     }
 </style>

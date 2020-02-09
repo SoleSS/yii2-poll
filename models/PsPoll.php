@@ -30,8 +30,21 @@ class PsPoll extends base\PsPoll
     public function rules()
     {
         $rules = parent::rules();
-        $rules[] = [['items', ], 'safe'];
+        $rules[] = [['items', ], 'validateItems'];
         return $rules;
+    }
+
+    public function validateItems($attribute, $params)
+    {
+        if (!is_array($this->$attribute)) {
+            $this->addError($attribute, 'Варианты голосования должны быть массивом');
+            return false;
+        }
+
+        if (!empty($this->$attribute)) foreach ($this->$attribute as $i => $item) {
+            if (empty($item['title'])) $this->addError($attribute."[{$i}][title]", 'Заголовок обязателен для заполнения');
+            return false;
+        }
     }
 
     public function attributeLabels()
@@ -59,6 +72,12 @@ class PsPoll extends base\PsPoll
         parent::afterSave($insert, $changedAttributes);
 
         $this->setPsPollItems();
+    }
+
+    public function afterFind(){
+        parent::afterFind();
+
+        $this->setItems();
     }
 
     const STATUS_UNPUBLISHED = 0;
@@ -96,7 +115,10 @@ class PsPoll extends base\PsPoll
 
         $oldItemsIds = PsPollItem::find()->select('id')->where(['ps_poll_id' => $this->id])->column();
         foreach ($this->items as $item) {
-            if (empty($item['id'])) new PsPollItem();
+            if (empty($item['id'])) {
+                $pollItem = new PsPollItem();
+                $pollItem->ps_poll_id = $this->id;
+            }
             else $pollItem = PsPollItem::findOne($item['id']);
             $pollItem->title = $item['title'];
             $pollItem->description = $item['description'];
@@ -111,6 +133,18 @@ class PsPoll extends base\PsPoll
 
         if (!empty($oldItemsIds)) PsPollItem::deleteAll(['id' => $oldItemsIds]);
         return true;
+    }
+
+    public function setItems() {
+        $result = [];
+        foreach ($this->psPollItems as $item) {
+            $result[] = [
+                'id' => $item->id,
+                'title' => $item->title,
+                'description' => $item->description,
+            ];
+        }
+        $this->items = $result;
     }
 
     /**
