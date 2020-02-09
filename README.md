@@ -9,7 +9,7 @@ php yii migrate/up --migrationPath=@vendor/soless/yii2-poll/migrations
 add to config:
 ```
     'modules' => [
-        'poll' => [
+        'ps' => [
             'class' => '\soless\poll\Module',
         ]
     ],
