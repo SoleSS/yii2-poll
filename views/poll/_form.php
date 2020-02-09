@@ -14,7 +14,11 @@ use \kartik\datetime\DateTimePicker;
 
 <div class="ps-poll-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+        'id' => 'poll-form',
+        'enableAjaxValidation' => true,
+        'enableClientValidation' => false,
+    ]); ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
