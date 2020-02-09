@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use \mihaildev\elfinder\ElFinder;
 use \mihaildev\ckeditor\CKEditor;
 use \soless\poll\models\PsPoll;
+use \kartik\datetime\DateTimePicker;
 
 /* @var $this yii\web\View */
 /* @var $model soless\poll\models\PsPoll */
@@ -43,6 +44,22 @@ use \soless\poll\models\PsPoll;
             'autoclose' => true
         ]
     ]); ?>
+
+    <?= $form->field($model, 'gallery')->widget(\unclead\multipleinput\TabularInput::class, [
+        'models' => $model->psPollItems,
+        'min' => 2,
+        'columns' => [
+            [
+                'name' => 'id',
+                'title' => '#',
+            ],
+            [
+                'name' => 'title',
+                'title' => 'Название',
+            ],
+        ]
+    ]);
+    ?>
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>

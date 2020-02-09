@@ -76,6 +76,8 @@ class PollController extends Controller
     public function actionCreate()
     {
         $model = new PsPoll();
+        $model->poll_up = date('Y-m-d H:i:s');
+        $model->poll_down = date('Y-m-d H:i:s', strtotime('+1 month'));
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);

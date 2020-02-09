@@ -2,6 +2,8 @@
 
 namespace soless\poll\models;
 
+use \soless\poll\helpers\AMP;
+
 
 /**
  * This is the model class for table "ps_poll".
@@ -28,6 +30,9 @@ class PsPoll extends base\PsPoll
             $this->created_at = date('Y-m-d H:i:s');
         }
         $this->updated_at = date('Y-m-d H:i:s');
+
+        $ampized = AMP::encode($this->description, (\Yii::$app->params['frontendFilesRoot'] ?? null));
+        $this->amp_description = $ampized['content'];
 
         return parent::beforeValidate();
     }
