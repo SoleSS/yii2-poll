@@ -8,12 +8,15 @@ use soless\poll\models\PsPollSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use \dektrium\user\traits\AjaxValidationTrait;
 
 /**
  * PollController implements the CRUD actions for PsPoll model.
  */
 class PollController extends Controller
 {
+    use AjaxValidationTrait;
+
     /**
      * {@inheritdoc}
      */
@@ -79,8 +82,13 @@ class PollController extends Controller
         $model->poll_up = date('Y-m-d H:i:s');
         $model->poll_down = date('Y-m-d H:i:s', strtotime('+1 month'));
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $this->performAjaxValidation($model);
+
+            //$model->items = Yii::$app->request->post()['PsPollItem'] ?? null;
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
         return $this->render('create', [
@@ -99,8 +107,13 @@ class PollController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $this->performAjaxValidation($model);
+
+            //$model->items = Yii::$app->request->post()['PsPollItem'] ?? null;
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
         return $this->render('update', [

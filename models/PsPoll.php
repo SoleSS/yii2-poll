@@ -19,11 +19,29 @@ use \soless\poll\helpers\AMP;
  * @property int $status Состояние опроса
  * @property string|null $poll_up Дата начала опроса
  * @property string|null $poll_down Дата окончания опроса
+ * @property PsPollItem $items Варианты голосования
  *
  * @property PsPollItem[] $psPollItems
  */
 class PsPoll extends base\PsPoll
 {
+    public $items;
+
+    public function rules()
+    {
+        $rules = parent::rules();
+        $rules[] = [['items', ], 'safe'];
+        return $rules;
+    }
+
+    public function attributeLabels()
+    {
+        $labels = parent::attributeLabels();
+        $labels['items'] = 'Варианты голосования';
+
+        return $labels;
+    }
+
     public function beforeValidate()
     {
         if ($this->isNewRecord) {
@@ -74,7 +92,24 @@ class PsPoll extends base\PsPoll
     }
 
     public function setPsPollItems() {
+        if (empty($this->items)) return false;
 
+        $oldItemsIds = PsPollItem::find()->select('id')->where(['ps_poll_id' => $this->id])->column();
+        foreach ($this->items as $item) {
+            if (empty($item['id'])) new PsPollItem();
+            else $pollItem = PsPollItem::findOne($item['id']);
+            $pollItem->title = $item['title'];
+            $pollItem->description = $item['description'];
+
+            if (!empty($item['id']) && in_array($item['id'], $oldItemsIds)) {
+                if (($key = array_search($item['id'], $oldItemsIds)) !== false) {
+                    unset($oldItemsIds[$key]);
+                }
+            }
+            if (!$pollItem->save()) \Yii::error($pollItem->errors);
+        }
+
+        if (!empty($oldItemsIds)) PsPollItem::deleteAll(['id' => $oldItemsIds]);
         return true;
     }
 

@@ -45,18 +45,23 @@ use \kartik\datetime\DateTimePicker;
         ]
     ]); ?>
 
-    <?= $form->field($model, 'gallery')->widget(\unclead\multipleinput\TabularInput::class, [
-        'models' => $model->psPollItems,
+    <?php echo $form->field($model, 'items')->widget(\unclead\multipleinput\MultipleInput::class, [
+        'allowEmptyList' => false,
         'min' => 2,
         'columns' => [
             [
                 'name' => 'id',
                 'title' => '#',
+                'options' => ['readonly' => true],
             ],
             [
                 'name' => 'title',
-                'title' => 'Название',
+                'title' => 'Заголовок',
             ],
+            [
+                'name' => 'description',
+                'title' => 'Описание',
+            ]
         ]
     ]);
     ?>
@@ -68,3 +73,9 @@ use \kartik\datetime\DateTimePicker;
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<style>
+    .list-cell__id {
+        width: 150px;
+    }
+</style>
