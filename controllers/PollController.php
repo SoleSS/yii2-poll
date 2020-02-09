@@ -2,6 +2,8 @@
 
 namespace soless\poll\controllers;
 
+use soless\poll\models\PsPollItemHit;
+use soless\poll\models\VoteForm;
 use Yii;
 use soless\poll\models\PsPoll;
 use soless\poll\models\PsPollSearch;
@@ -41,6 +43,25 @@ class PollController extends Controller
                 ],
             ],
         ];
+    }
+
+    public function actionResults($id) {
+        $model = PsPoll::findOne((int)$id);
+
+        return $this->render('results', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionVote() {
+        $form = new VoteForm();
+        $form->load(Yii::$app->request->post());
+        /** @var PsPollItemHit $model */
+        $model = $form->prepareVote();
+        $success = $model->save();
+
+        if ($success) return $this->redirect('results', ['id' => $model->psPoll->id]);
+        else throw new \yii\web\ServerErrorHttpException('Что-то пошло не так...');
     }
 
     /**

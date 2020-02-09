@@ -20,6 +20,7 @@ use \soless\poll\helpers\AMP;
  * @property string|null $poll_up Дата начала опроса
  * @property string|null $poll_down Дата окончания опроса
  * @property PsPollItem $items Варианты голосования
+ * @property-read array $results Результаты опроса
  *
  * @property PsPollItem[] $psPollItems
  */
@@ -145,6 +146,35 @@ class PsPoll extends base\PsPoll
             ];
         }
         $this->items = $result;
+    }
+
+    public function getResults() {
+        if (!$this->isResultAvailable()) return [
+            'caption' => 'Спасибо за ваш голос',
+            'msg' => 'Результаты станут доступны: '. date('d\.m\.Y H:i:s', strtotime($this->poll_down)),
+            'data' => [],
+        ];
+
+        return [
+            'caption' => 'Спасибо за ваш голос',
+            'msg' => null,
+            'data' => PsPollItemHit::find()
+                ->select([
+                    'ps_poll_item_hit.ps_poll_item_id',
+                    'title' => 'ps_poll_item.title',
+                    'description' => 'ps_poll_item.description',
+                    'count' => 'COUNT(*)',
+                ])
+                ->joinWith(['psPollItem', ])
+                ->where(['ps_poll_item.ps_poll_id' => $this->id])
+                ->groupBy([
+                    'ps_poll_item_hit.ps_poll_item_id',
+                    'ps_poll_item.title',
+                    'ps_poll_item.description'
+                ])
+                ->asArray()
+                ->all()
+        ];
     }
 
     /**

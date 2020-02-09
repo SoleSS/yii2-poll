@@ -14,6 +14,7 @@ namespace soless\poll\models;
  * @property string $created_at Дата создания
  *
  * @property PsPollItem $psPollItem
+ * @property-read PsPoll $psPoll
  */
 class PsPollItemHit extends base\PsPollItemHit
 {
@@ -33,6 +34,11 @@ class PsPollItemHit extends base\PsPollItemHit
      */
     public function getPsPollItem()
     {
-        return $this->hasOne(PsPollItem::className(), ['id' => 'ps_poll_item_id']);
+        return $this->hasOne(PsPollItem::class, ['id' => 'ps_poll_item_id']);
+    }
+
+    public function getPsPoll() {
+        return $this->hasOne(PsPoll::class, ['id' => 'ps_poll_id'])
+            ->via('psPollItem');
     }
 }
