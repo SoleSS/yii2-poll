@@ -15,5 +15,6 @@ add to config:
     ],
 ```
 
-## Available CRUD controllers:
-
+## Available controllers:
+/ps/poll
+/ps/api
