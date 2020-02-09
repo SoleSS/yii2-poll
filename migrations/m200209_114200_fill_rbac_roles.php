@@ -31,9 +31,7 @@ class m200209_114200_fill_rbac_roles extends Migration
     public function down()
     {
         try {
-            $this->delete('auth_item', ['OR',
-                ['name' => 'PsPollAdmin'],
-            ]);
+            $this->delete('auth_item', ['name' => 'PsPollAdmin']);
         } catch (\Exception $exception) {
             echo $exception->getMessage();
         }
