@@ -59,14 +59,14 @@ class PsPollSearch extends PsPoll
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            //'created_at' => $this->created_at,
+            //'updated_at' => $this->updated_at,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'amp_description', $this->amp_description])
-            ->andFilterWhere(['like', 'params', $this->params]);
+            ->andFilterWhere(['like', 'description', $this->description]);
+            //->andFilterWhere(['like', 'amp_description', $this->amp_description])
+            //->andFilterWhere(['like', 'params', $this->params]);
 
         return $dataProvider;
     }
