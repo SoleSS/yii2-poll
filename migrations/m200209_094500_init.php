@@ -55,8 +55,6 @@ class m200209_094500_init extends Migration
 
         $this->createIndex('idx-ps_poll_item_hit-created_at', 'ps_poll_item_hit', 'created_at');
         $this->createIndex('idx-ps_poll_item_hit-ps_poll_item_id', 'ps_poll_item_hit', 'ps_poll_item_id');
-        $this->createIndex('idx-ps_poll_item_hit-ip', 'ps_poll_item_hit', 'ip');
-        $this->createIndex('idx-ps_poll_item_hit-x_forwarded_ip', 'ps_poll_item_hit', 'x_forwarded_ip');
         $this->addForeignKey('fk-ps_poll_item_hit-ps_poll_item_id', 'ps_poll_item_hit', 'ps_poll_item_id', 'ps_poll_item', 'id', 'CASCADE');
     }
 
