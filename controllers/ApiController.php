@@ -12,7 +12,7 @@ use \dektrium\user\traits\AjaxValidationTrait;
 /**
  * PollController implements the CRUD actions for PsPoll model.
  */
-class PollController extends \yii\rest\Controller
+class ApiController extends \yii\rest\Controller
 {
     use AjaxValidationTrait;
 
