@@ -22,6 +22,7 @@ use \soless\poll\helpers\AMP;
  * @property PsPollItem $items Варианты голосования
  * @property-read array $results Результаты опроса
  * @property-read PsPollItemHit[] $psPollItemHits Данные о голосах
+ * @property-read array $optionsArray Массив вариантов голосования
  *
  * @property PsPollItem[] $psPollItems
  */
@@ -176,6 +177,10 @@ class PsPoll extends base\PsPoll
                 ->asArray()
                 ->all()
         ];
+    }
+
+    public function getOptionsArray() {
+        return \yii\helpers\ArrayHelper::map($this->psPollItems, 'id', 'title');
     }
 
     /**
