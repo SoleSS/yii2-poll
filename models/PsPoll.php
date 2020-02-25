@@ -21,6 +21,7 @@ use \soless\poll\helpers\AMP;
  * @property string|null $poll_down Дата окончания опроса
  * @property PsPollItem $items Варианты голосования
  * @property-read array $results Результаты опроса
+ * @property-read PsPollItemHit[] $psPollItemHits
  *
  * @property PsPollItem[] $psPollItems
  */
