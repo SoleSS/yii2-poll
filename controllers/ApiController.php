@@ -28,11 +28,10 @@ class ApiController extends \yii\rest\Controller
         $model = $form->prepareVote();
         $success = $model->save();
 
-        return [
+        return array_merge([
             'success' => $success,
-            'results' => $success ? $model->psPoll->results : [],
             'errors' => $model->errors,
-        ];
+        ], ($success ? $model->psPoll->results : []));
     }
 
 }
