@@ -184,6 +184,16 @@ class PsPoll extends base\PsPoll
      */
     public function getPsPollItems()
     {
-        return $this->hasMany(PsPollItem::className(), ['ps_poll_id' => 'id']);
+        return $this->hasMany(PsPollItem::class, ['ps_poll_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[PsPollItemHits]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPsPollItemHits() {
+        return $this->hasMany(PsPollItemHit::class, ['ps_poll_item_id' => 'ps_poll_id'])
+            ->via('psPollItems');
     }
 }
