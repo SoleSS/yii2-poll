@@ -206,4 +206,8 @@ class PsPoll extends base\PsPoll
         return $this->hasMany(PsPollItemHit::class, ['ps_poll_item_id' => 'ps_poll_id'])
             ->via('psPollItems');
     }
+
+    public static function asArray() {
+        return \yii\helpers\ArrayHelper::map(static::find()->select(['id', 'title'])->asArray()->all(), 'id', 'title');
+    }
 }
