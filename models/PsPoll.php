@@ -160,6 +160,10 @@ class PsPoll extends base\PsPoll
         return [
             'caption' => 'Спасибо за ваш голос',
             'msg' => null,
+            'totalVotes' => PsPollItemHit::find()
+                ->joinWith(['psPollItem', ])
+                ->where(['ps_poll_item.ps_poll_id' => $this->id])
+                ->count(),
             'data' => PsPollItemHit::find()
                 ->select([
                     'ps_poll_item_hit.ps_poll_item_id',
