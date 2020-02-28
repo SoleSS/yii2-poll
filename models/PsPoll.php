@@ -208,9 +208,6 @@ class PsPoll extends base\PsPoll
     }
 
     public static function asArray() {
-        return array_merge(
-            [0 => 'Не выбрано'],
-            \yii\helpers\ArrayHelper::map(static::find()->select(['id', 'title'])->asArray()->all(), 'id', 'title')
-        );
+        return \yii\helpers\ArrayHelper::map(static::find()->select(['id', 'title'])->asArray()->all(), 'id', 'title');
     }
 }
