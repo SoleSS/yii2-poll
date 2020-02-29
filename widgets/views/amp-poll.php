@@ -10,7 +10,7 @@ use yii\helpers\Url;
 ?>
 
 <amp-state id="poll_<?= $model->id ?>">
-    "showOptions": 1,
+    "showOptions": true,
     "submitDisabled": true
 </amp-state>
 
@@ -49,14 +49,13 @@ use yii\helpers\Url;
                 ])->label(false) ?>
             </div>
 
-            <div class="clearfix submit-btn-wrap">
+            <div class="clearfix submit-btn-wrap" [class]="poll_<?= $model->id ?>.showOptions ? 'clearfix submit-btn-wrap' : 'hide'">
                 <input type="submit"
                        disabled
                        [disabled]="poll_<?= $model->id ?>.submitDisabled"
                        class="poll-submit block btn px2 py1"
-                       [class]="poll_<?= $model->id ?>.showOptions ? 'poll-submit block btn px2 py1' : 'hide'"
                        value="Ответить"
-                       on="tap:AMP.setState({poll_<?= $model->id ?>: { showOptions: 0 } })"
+                       on="tap:AMP.setState({poll_<?= $model->id ?>: { showOptions: false } })"
                 >
             </div>
 
