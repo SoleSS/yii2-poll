@@ -11,7 +11,7 @@ use yii\helpers\Url;
 
 <amp-state id="poll_<?= $model->id ?>">
     "showOptions": 1,
-    "submitDisabled": true,
+    "submitDisabled": true
 </amp-state>
 
 <div class="clearfix poll-widget-wrap">
