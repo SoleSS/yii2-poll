@@ -51,21 +51,22 @@ use yii\helpers\Url;
             <div submit-success>
                 <script type="text/plain"
                         template="amp-mustache">
-              <p>{{caption}}</p>
-              <p>Результаты</p>
-              <p>Всего голосов: {{totalVotes}}</p>
-              <table>
-                {{#data}}
-                <tr>
-                  <td>
-                    {{title}}
-                  </td>
-                  <td>
-                    {{count}}
-                  </td>
-                </tr>
-                {{/data}}
-              </table>
+              <div class="caption-wrap">{{caption}}</div>
+              <div class="results-wrap>
+                    <div class="results-titls">Результаты</div>
+                      <div class="rows-wrap">
+                        {{#data}}
+                        <div class="row-wrap">
+                            <div class="title-wrap">{{title}}</div>
+                            <div class="count-wrap">{{count}}</div>
+                            <div class="proc-wrap">
+                                <div class="proc w-{{proc}}"></div>
+                            </div>
+                        </div>
+                        {{/data}}
+                      </div>
+                    <div class="total-votes-wrap">Всего голосов: {{totalVotes}}</div>
+            </div>
             </script>
             </div>
             <div submit-error>
