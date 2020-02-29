@@ -10,7 +10,8 @@ use yii\helpers\Url;
 ?>
 
 <amp-state id="poll_<?= $model->id ?>">
-    "showOptions": 1
+    "showOptions": 1,
+    "submitDisabled": 1,
 </amp-state>
 
 <div class="clearfix poll-widget-wrap">
@@ -22,7 +23,7 @@ use yii\helpers\Url;
     </div>
 
     <?php if (!(!\Yii::$app->user->isGuest && in_array(\Yii::$app->user->id, $model->todayVotedUsers)) && !\Yii::$app->session->has('poll-'.$model->id)) : ?>
-        <div class="options-wrap">
+        <div class="clearfix options-wrap">
 
             <?php $formModel = new \soless\poll\models\VoteForm(); $formModel->pollId = $model->id; ?>
             <?php $form = ActiveForm::begin([
@@ -40,15 +41,18 @@ use yii\helpers\Url;
 
             <?= $form->field($formModel, 'pollId')->hiddenInput()->label(false) ?>
 
-            <div class="radios-wrap" [class]="poll_<?= $model->id ?>.showOptions ? 'radios-wrap' : 'radios-wrap hide'">
+            <div class="clearfix radios-wrap" [class]="poll_<?= $model->id ?>.showOptions ? 'radios-wrap' : 'radios-wrap hide'">
                 <?= $form->field($formModel, 'pollItemId')->radioList($model->optionsArray, [
                     'itemOptions' => [
+                        'on' => 'change:AMP.setState({poll_'. $model->id .': { submitDisabled: 0 } })'
                     ],
                 ])->label(false) ?>
             </div>
 
-            <div class="submit-btn-wrap">
+            <div class="clearfix submit-btn-wrap">
                 <input type="submit"
+                       disabled="disabled"
+                       [disabled]="poll_<?= $model->id ?>.submitDisabled ? 'disabled' : ''"
                        class="poll-submit block btn px2 py2"
                        [class]="poll_<?= $model->id ?>.showOptions ? 'poll-submit block btn px2 py2' : 'hide'"
                        value="Ответить"
