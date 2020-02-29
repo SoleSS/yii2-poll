@@ -52,7 +52,7 @@ use yii\helpers\Url;
                 <script type="text/plain"
                         template="amp-mustache">
               <div class="caption-wrap">{{caption}}</div>
-              <div class="results-wrap>
+              <div class="results-wrap">
                     <div class="results-titls">Результаты</div>
                       <div class="rows-wrap">
                         {{#data}}
