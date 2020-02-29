@@ -13,7 +13,7 @@ use yii\helpers\Url;
     "showOptions": 1
 </amp-state>
 
-<div class="clearfix">
+<div class="clearfix poll-widget-wrap">
     <div class="title-wrap">
         <h3><?= $model->title ?></h3>
     </div>
