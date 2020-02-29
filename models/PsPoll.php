@@ -157,19 +157,22 @@ class PsPoll extends base\PsPoll
             'data' => [],
         ];
 
+        $totalVotes = PsPollItemHit::find()
+            ->joinWith(['psPollItem', ])
+            ->where(['ps_poll_item.ps_poll_id' => $this->id])
+            ->count();
+
         return [
             'caption' => 'Спасибо за ваш голос',
             'msg' => null,
-            'totalVotes' => PsPollItemHit::find()
-                ->joinWith(['psPollItem', ])
-                ->where(['ps_poll_item.ps_poll_id' => $this->id])
-                ->count(),
+            'totalVotes' => $totalVotes,
             'data' => PsPollItemHit::find()
                 ->select([
                     'ps_poll_item_hit.ps_poll_item_id',
                     'title' => 'ps_poll_item.title',
                     'description' => 'ps_poll_item.description',
                     'count' => 'COUNT(*)',
+                    'proc' => 'ROUND(COUNT(*)/'. ($totalVotes == 0 ? 1 : $totalVotes) .', 0)',
                 ])
                 ->joinWith(['psPollItem', ])
                 ->where(['ps_poll_item.ps_poll_id' => $this->id])
