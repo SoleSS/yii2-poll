@@ -66,7 +66,7 @@ use yii\helpers\Url;
                         template="amp-mustache">
               <div class="caption-wrap">{{caption}}</div>
               <div class="results-wrap>
-                    <div class="results-titls">Результаты</div>
+                    <div class="results-title">Результаты</div>
                       <div class="rows-wrap">
                         {{#data}}
                         <div class="row-wrap">
