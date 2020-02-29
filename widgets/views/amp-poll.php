@@ -53,8 +53,8 @@ use yii\helpers\Url;
                 <input type="submit"
                        disabled
                        [disabled]="poll_<?= $model->id ?>.submitDisabled"
-                       class="poll-submit block btn px2 py2"
-                       [class]="poll_<?= $model->id ?>.showOptions ? 'poll-submit block btn px2 py2' : 'hide'"
+                       class="poll-submit block btn px2 py1"
+                       [class]="poll_<?= $model->id ?>.showOptions ? 'poll-submit block btn px2 py1' : 'hide'"
                        value="Ответить"
                        on="tap:AMP.setState({poll_<?= $model->id ?>: { showOptions: 0 } })"
                 >
