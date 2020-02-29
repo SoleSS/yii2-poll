@@ -11,7 +11,7 @@ use yii\helpers\Url;
 
 <amp-state id="poll_<?= $model->id ?>">
     "showOptions": 1,
-    "submitDisabled": 1,
+    "submitDisabled": true,
 </amp-state>
 
 <div class="clearfix poll-widget-wrap">
@@ -44,15 +44,15 @@ use yii\helpers\Url;
             <div class="clearfix radios-wrap" [class]="poll_<?= $model->id ?>.showOptions ? 'radios-wrap' : 'radios-wrap hide'">
                 <?= $form->field($formModel, 'pollItemId')->radioList($model->optionsArray, [
                     'itemOptions' => [
-                        'on' => 'change:AMP.setState({poll_'. $model->id .': { submitDisabled: 0 } })'
+                        'on' => 'change:AMP.setState({poll_'. $model->id .': { submitDisabled: false } })'
                     ],
                 ])->label(false) ?>
             </div>
 
             <div class="clearfix submit-btn-wrap">
                 <input type="submit"
-                       disabled="disabled"
-                       [disabled]="poll_<?= $model->id ?>.submitDisabled ? 'disabled' : ''"
+                       disabled
+                       [disabled]="poll_<?= $model->id ?>.submitDisabled"
                        class="poll-submit block btn px2 py2"
                        [class]="poll_<?= $model->id ?>.showOptions ? 'poll-submit block btn px2 py2' : 'hide'"
                        value="Ответить"
