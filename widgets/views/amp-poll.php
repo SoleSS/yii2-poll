@@ -42,7 +42,7 @@ use yii\helpers\Url;
     <div submit-success>
         <script type="text/plain"
                 template="amp-mustache">
-      <p>{{caption}}</p>
+              <p>{{caption}}</p>
               <p>Результаты</p>
               <p>Всего голосов: {{#totalVotes}}</p>
               <table>
