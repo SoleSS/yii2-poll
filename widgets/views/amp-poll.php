@@ -49,6 +49,7 @@ use yii\helpers\Url;
             <div class="submit-btn-wrap">
                 <input type="submit"
                        class="poll-submit block btn px2 py2"
+                       [class]="poll_<?= $model->id ?>.showOptions ? 'poll-submit block btn px2 py2' : 'hide'"
                        value="Ответить"
                        on="change:AMP.setState({poll_<?= $model->id ?>: { showOptions: 0 } })"
                 >
