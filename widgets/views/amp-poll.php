@@ -65,8 +65,8 @@ use yii\helpers\Url;
                 <script type="text/plain"
                         template="amp-mustache">
               <div class="caption-wrap">{{caption}}</div>
-              <div class="results-wrap>
-                    <div class="results-title">Результаты</div>
+              <div class="results-wrap">
+                      <div class="results-title">Результаты</div>
                       <div class="rows-wrap">
                         {{#data}}
                         <div class="row-wrap">
@@ -79,8 +79,8 @@ use yii\helpers\Url;
                         </div>
                         {{/data}}
                       </div>
-                    <div class="total-votes-wrap">Всего голосов: {{totalVotes}}</div>
-            </div>
+                      <div class="total-votes-wrap">Всего голосов: {{totalVotes}}</div>
+              </div>
             </script>
             </div>
             <div submit-error>
