@@ -58,9 +58,10 @@ use yii\helpers\Url;
                         {{#data}}
                         <div class="row-wrap">
                             <div class="title-wrap">{{title}}</div>
+                            <div class="proc-wrap">{{proc}}%</div>
                             <div class="count-wrap">{{count}}</div>
-                            <div class="proc-wrap">
-                                <div class="proc w-{{proc}}"></div>
+                            <div class="progressbar-wrap">
+                                <div class="proc-progress w-{{proc}}"></div>
                             </div>
                         </div>
                         {{/data}}
