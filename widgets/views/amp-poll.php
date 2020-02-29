@@ -53,7 +53,7 @@ use yii\helpers\Url;
                         template="amp-mustache">
               <p>{{caption}}</p>
               <p>Результаты</p>
-              <p>Всего голосов: {{#totalVotes}}</p>
+              <p>Всего голосов: {{totalVotes}}</p>
               <table>
                 {{#data}}
                 <tr>
