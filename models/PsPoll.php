@@ -172,7 +172,7 @@ class PsPoll extends base\PsPoll
                     'title' => 'ps_poll_item.title',
                     'description' => 'ps_poll_item.description',
                     'count' => 'COUNT(*)',
-                    'proc' => 'ROUND(COUNT(*)/'. ($totalVotes == 0 ? 1 : $totalVotes) .', 0)',
+                    'proc' => 'ROUND(COUNT(*)/'. ($totalVotes == 0 ? 1 : $totalVotes) .' * 100, 0)',
                 ])
                 ->joinWith(['psPollItem', ])
                 ->where(['ps_poll_item.ps_poll_id' => $this->id])
