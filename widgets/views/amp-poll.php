@@ -44,7 +44,9 @@ use yii\helpers\Url;
             <div class="clearfix radios-wrap" [class]="poll_<?= $model->id ?>.showOptions ? 'radios-wrap' : 'radios-wrap hide'">
                 <?= $form->field($formModel, 'pollItemId')->radioList($model->optionsArray, [
                     'itemOptions' => [
-                        'on' => 'change:AMP.setState({poll_'. $model->id .': { submitDisabled: false } })'
+                        'tabindex' => 1,
+                        'role' => 'button',
+                        'on' => 'change:AMP.setState({poll_'. $model->id .': { showOptions: true, submitDisabled: false } })'
                     ],
                 ])->label(false) ?>
             </div>
