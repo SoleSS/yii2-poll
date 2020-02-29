@@ -27,6 +27,7 @@ use yii\helpers\Url;
             <?php $formModel = new \soless\poll\models\VoteForm(); $formModel->pollId = $model->id; ?>
             <?php $form = ActiveForm::begin([
                 'id' => 'poll-'. $model->id,
+                'action' => false,
                 'enableAjaxValidation' => false,
                 'enableClientValidation' => false,
                 'enableClientScript' => false,
@@ -51,7 +52,7 @@ use yii\helpers\Url;
                        class="poll-submit block btn px2 py2"
                        [class]="poll_<?= $model->id ?>.showOptions ? 'poll-submit block btn px2 py2' : 'hide'"
                        value="Ответить"
-                       on="change:AMP.setState({poll_<?= $model->id ?>: { showOptions: 0 } })"
+                       on="tap:AMP.setState({poll_<?= $model->id ?>: { showOptions: 0 } })"
                 >
             </div>
 
