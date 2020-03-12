@@ -34,7 +34,7 @@ use yii\helpers\Url;
                 'enableClientScript' => false,
                 'method' => 'post',
                 'options' => [
-                    'action-xhr' => \Yii::$app->UrlManager->hostInfo . Url::toRoute(['/ps/api/vote']),
+                    'action-xhr' => Url::toRoute(['/ps/api/vote']),
                     'target' => '_blank',
                 ],
             ]); ?>
